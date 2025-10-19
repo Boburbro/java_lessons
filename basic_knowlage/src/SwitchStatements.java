@@ -60,7 +60,13 @@ public class SwitchStatements {
 //        }
 
 
+        String day = "Dushanba";
 
+        switch (day){
+            case "Dushanba", "Seshanba", "Chorshanba", "Payshanba", "Juma" -> System.out.println("Fk kun");
+            case "Shanba", "Yakshanba"-> System.out.println("Vxadnoy");
+            default -> System.out.println("O'zbekmizu brodar");
+        }
 
 
     }
