@@ -14,6 +14,9 @@ public class Main {
             switch (n) {
                 case 1:
                     Contact contact = addContact();
+                    if (!isValidContact(contact)) {
+                    }
+                    System.out.println(contact.name + " " + contact.surname);
                     break;
                 case 2:
                     break;
@@ -66,6 +69,34 @@ public class Main {
 
         return contact;
 
+    }
+
+    public static boolean isValidContact(Contact contact) {
+
+        if (contact.name == null || contact.name.trim().length() < 3) {
+            System.out.println("Name is wrong");
+            return false;
+        }
+
+        if (contact.surname == null || contact.surname.trim().length() < 3) {
+            System.out.println("Surname is wrong");
+            return false;
+        }
+
+        if (contact.phone == null || contact.phone.trim().length() < 7) {
+            System.out.println("Phone is wrong");
+            return false;
+        }
+
+        char[] phoneArr = contact.phone.toCharArray();
+        for (char ch : phoneArr) {
+            if (!Character.isDigit(ch)) {
+                System.out.println("Phone number is wrong");
+                return false;
+            }
+        }
+
+        return true;
     }
 
 }
