@@ -6,6 +6,8 @@ public class Main {
 
 
     public static void main(String[] args) {
+        Contact[] contactArr = new Contact[10];
+        int currenIndex = 0;
 
         while (true) {
             menu();
@@ -14,11 +16,19 @@ public class Main {
             switch (n) {
                 case 1:
                     Contact contact = addContact();
-                    if (!isValidContact(contact)) {
+                    if (isValidContact(contact)) {
+                        contactArr[currenIndex] = contact;
+                        currenIndex++;
+                        System.out.println(contact.name + " " + contact.surname);
                     }
-                    System.out.println(contact.name + " " + contact.surname);
                     break;
                 case 2:
+                    for (Contact c: contactArr) {
+                        if (c == null){
+                            break;
+                        }
+                        System.out.println(c.name + " " + c.surname);
+                    }
                     break;
                 case 3:
                     break;
