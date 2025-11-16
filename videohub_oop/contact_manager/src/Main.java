@@ -4,10 +4,11 @@ import static java.lang.System.exit;
 
 public class Main {
 
+    static Contact[] contactArr = new Contact[2];
+    static int currenIndex = 0;
 
     public static void main(String[] args) {
-        Contact[] contactArr = new Contact[10];
-        int currenIndex = 0;
+
 
         while (true) {
             menu();
@@ -16,19 +17,10 @@ public class Main {
             switch (n) {
                 case 1:
                     Contact contact = addContact();
-                    if (isValidContact(contact)) {
-                        contactArr[currenIndex] = contact;
-                        currenIndex++;
-                        System.out.println(contact.name + " " + contact.surname);
-                    }
+                    addToArray(contact);
                     break;
                 case 2:
-                    for (Contact c: contactArr) {
-                        if (c == null){
-                            break;
-                        }
-                        System.out.println(c.name + " " + c.surname);
-                    }
+                    printContactList();
                     break;
                 case 3:
                     break;
@@ -107,6 +99,31 @@ public class Main {
         }
 
         return true;
+    }
+
+    public static void addToArray(Contact contact) {
+        if (isValidContact(contact)) {
+            if (currenIndex == contactArr.length) {
+                Contact[] newArr = new Contact[contactArr.length + 1];
+                for (int i = 0; i < contactArr.length; i++) {
+                    newArr[i] = contactArr[i];
+
+                }
+                contactArr = newArr;
+            }
+            contactArr[currenIndex] = contact;
+            currenIndex++;
+            System.out.println(contact.name + " " + contact.surname);
+        }
+    }
+
+    public static void printContactList() {
+        for (Contact c : contactArr) {
+            if (c == null) {
+                break;
+            }
+            System.out.println(c.name + " " + c.surname);
+        }
     }
 
 }
