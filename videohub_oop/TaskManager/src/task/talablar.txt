@@ -17,6 +17,6 @@ Bu dastur console yordamida ishlaydigan bo'lsin.
         Enter name:
     4-ChangeStatus by id
         Enter id
-    5-Active TaskList
+    5-
         id, title, content
     0-Exit.

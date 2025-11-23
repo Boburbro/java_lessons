@@ -1,7 +1,5 @@
 package task;
 
-import contact.Contact;
-
 import java.util.Scanner;
 
 import static java.lang.System.exit;
@@ -13,7 +11,8 @@ public class TaskManager {
     public int generalID = 1;
 
     public void start() {
-        while (true) {
+        boolean flag = true;
+        while (flag) {
             menu();
             int n = getAction();
 
@@ -26,11 +25,18 @@ public class TaskManager {
                     printAllTasks();
                     break;
                 case 3:
+                    String title = getTaskTitle();
+                    changeStatusByTitle(title);
+                    break;
                 case 4:
+                    int id = getTaskId();
+                    changeStatusById(id);
+                    break;
                 case 5:
+                    printActiveTasks();
                     break;
                 case 0:
-                    exit(0);
+                    flag = false;
                     break;
                 default:
                     System.out.println("Please choose current number");
@@ -89,11 +95,56 @@ public class TaskManager {
         System.out.println(task.getTitle() + " " + task.getContent());
     }
 
-    public void printAllTasks(){
-        for (Task task: taskArray){
-            if (task != null){
-                System.out.println(task.getTitle() + " " + task.getContent());
+    public void printAllTasks() {
+        for (Task task : taskArray) {
+            if (task != null) {
+                System.out.println(task.getId() + " " + task.getTitle() + " " + task.getContent() + " " + task.getStatus());
             }
         }
     }
+
+    public void printActiveTasks() {
+        for (Task task : taskArray) {
+            if (task != null && task.getStatus().equals("ACTIVE")) {
+                System.out.println(task.getId() + " " + task.getTitle() + " " + task.getContent() + " " + task.getStatus());
+            }
+        }
+    }
+
+    public String getTaskTitle() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter title: ");
+        return scanner.nextLine();
+    }
+
+    public void changeStatusByTitle(String title){
+        for (Task t : taskArray) {
+            if (t == null) {
+                continue;
+            }
+            if (t.getTitle().equals(title)) {
+                t.setStatus(t.getStatus().equals("DONE") ? "ACTIVE" : "DONE");
+                break;
+            }
+        }
+    }
+
+    public int getTaskId() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter id: ");
+        return scanner.nextInt();
+    }
+
+    public void changeStatusById(int id){
+        for (Task t : taskArray) {
+            if (t == null) {
+                continue;
+            }
+            if (t.getId() == id) {
+                t.setStatus(t.getStatus().equals("DONE") ? "ACTIVE" : "DONE");
+                break;
+            }
+        }
+    }
+
 }

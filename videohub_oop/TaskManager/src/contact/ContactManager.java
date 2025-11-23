@@ -12,7 +12,8 @@ public class ContactManager {
 
 
     public void start() {
-        while (true) {
+        boolean flag = true;
+        while (flag) {
             menu();
             int n = getAction();
 
@@ -33,7 +34,7 @@ public class ContactManager {
                     deleteContactFromArray(phone);
                     break;
                 case 0:
-                    exit(0);
+                    flag = false;
                     break;
                 default:
                     System.out.println("Please choose current number");
