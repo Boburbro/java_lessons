@@ -2,7 +2,6 @@ package task;
 
 import java.util.Scanner;
 
-import static java.lang.System.exit;
 
 public class TaskManager {
 
@@ -117,7 +116,7 @@ public class TaskManager {
         return scanner.nextLine();
     }
 
-    public void changeStatusByTitle(String title){
+    public void changeStatusByTitle(String title) {
         for (Task t : taskArray) {
             if (t == null) {
                 continue;
@@ -135,7 +134,7 @@ public class TaskManager {
         return scanner.nextInt();
     }
 
-    public void changeStatusById(int id){
+    public void changeStatusById(int id) {
         for (Task t : taskArray) {
             if (t == null) {
                 continue;
